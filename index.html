@@ -27,7 +27,7 @@
       --ink: #2A1A12;
       --muted: #8B7565;
       --line: #EFE5D6;
-      --r: 13px;
+      --r: 8px; /* cards: a little sharper (DeBee) */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -36,7 +36,6 @@
     a { color: inherit; }
     .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
     .kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--honey); }
-    .kicker::before { content: ''; width: 26px; height: 1.5px; background: currentColor; }
     h1, h2, h3 { line-height: 1.05; letter-spacing: -0.03em; color: var(--cocoa); }
     h2 { font-size: clamp(30px, 5.4vw, 60px); font-weight: 800; margin-top: 16px; }
     p { color: var(--muted); }
@@ -44,7 +43,7 @@
     /* honey reads well on cocoa only; on white, beige and cream the labels are cocoa */
     .faq .kicker { color: var(--cocoa); }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 55px; padding: 0 28px; border-radius: 8px; font: 700 17px 'Plus Jakarta Sans', sans-serif; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s ease, background .2s; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 55px; padding: 0 28px; border-radius: 5px; font: 700 17px 'Plus Jakarta Sans', sans-serif; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s ease, background .2s; }
     .btn:hover { transform: translateY(-2px); }
     .btn-light { background: var(--honey); color: var(--cocoa); } /* primary: honey */
     .btn-line { background: transparent; color: var(--cream); border: 1px solid rgba(251, 246, 238, 0.3); }
@@ -80,7 +79,7 @@
     .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
     .hero-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(42, 24, 16, 0.35), rgba(42, 24, 16, 0) 30%); pointer-events: none; }
     .note { position: absolute; left: 16px; bottom: 16px; z-index: 1; display: flex; align-items: center; gap: 10px; background: rgba(42, 24, 16, 0.38); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(251, 246, 238, 0.22); color: var(--cream); border-radius: var(--r); padding: 12px 16px; font-weight: 700; font-size: 14px; line-height: 1.3; animation: float 6s ease-in-out infinite; }
-    .note .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--cream); display: grid; place-items: center; font-size: 15px; }
+    .note .dot { width: 30px; height: 30px; border-radius: 6px; background: var(--cream); display: grid; place-items: center; font-size: 15px; }
     .note small { display: block; font-weight: 500; color: rgba(251, 246, 238, 0.75); font-size: 12px; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
@@ -95,15 +94,15 @@
     /* The promise: full screen, three photos behind (queen on the left half, king top right,
        mum and daughter bottom right), a cocoa veil, the words on top */
     .promise { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: end center; overflow: hidden; background: var(--cocoa-deep); text-align: center; padding: 0 0 24px; }
-    .collage { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); overflow: hidden; } /* minmax(0, ...) keeps each photo inside its box */
+    .collage { position: absolute; inset: 0; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); overflow: hidden; } /* minmax(0, ...) keeps each photo inside its box */
     .collage img { width: 100%; height: 100%; min-height: 0; object-fit: cover; }
     .collage .a { object-position: center 100%; } /* faces sit higher, clear of the words */
-    .collage .b { object-position: center 100%; }
+    .collage .b { object-position: center 22%; } /* just the man now (DeBee) */
     .promise .wrap { position: relative; z-index: 1; }
     @media (max-width: 899px) {
       /* phones: the photos on top, the words below on the brown, so no face is covered */
       .promise { display: block; min-height: 0; padding: 0 0 40px; text-align: left; }
-      .collage { position: relative; height: 72vw; min-height: 280px; }
+      .collage { position: relative; width: 100%; height: 100vw; min-height: 280px; }
       .promise .wrap { margin-top: 0; padding-top: 32px; }
     }
     .promise-card { max-width: 600px; margin: 0 auto; padding: 22px 26px; border-radius: var(--r); background: rgba(42, 24, 16, 0.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(251, 246, 238, 0.12); }
@@ -158,7 +157,7 @@
     .split .words .num { font-size: 15px; font-weight: 800; color: var(--cocoa); letter-spacing: 0.08em; }
     .split .words p { font-size: 18px; margin-top: 16px; max-width: 460px; }
     .pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-top: 22px; padding: 10px 14px; border-radius: var(--r); background: var(--white); border: 1px solid var(--line); color: var(--cocoa); font-weight: 600; font-size: 15px; }
-    .ai-tag { display: inline-flex; align-items: center; gap: 3px; background: var(--honey); color: var(--cocoa); font-weight: 800; font-size: 11px; border-radius: 6px; padding: 2px 7px; letter-spacing: 0; text-transform: none; }
+    .ai-tag { display: inline-flex; align-items: center; gap: 3px; background: var(--honey); color: var(--cocoa); font-weight: 800; font-size: 11px; border-radius: 4px; padding: 2px 7px; letter-spacing: 0; text-transform: none; }
 
     /* Every crown: tall portraits, swipeable on a phone */
     .crowns { background: var(--cocoa); }
@@ -170,7 +169,7 @@
     .portrait { scroll-snap-align: center; position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 3 / 4; background: var(--cocoa-deep); }
     .portrait img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
     .portrait:hover img { transform: scale(1.04); }
-    .portrait .label { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 14px 16px; border-radius: 10px; background: rgba(42, 24, 16, 0.35); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(251, 246, 238, 0.18); color: var(--cream); }
+    .portrait .label { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 14px 16px; border-radius: 6px; background: rgba(42, 24, 16, 0.35); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(251, 246, 238, 0.18); color: var(--cream); }
     .portrait .label b { display: block; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
     .portrait .label span { font-size: 14px; color: rgba(251, 246, 238, 0.85); }
     .swipe-hint { margin-top: 14px; font-size: 14px; color: rgba(251, 246, 238, 0.6); text-align: center; }
@@ -194,11 +193,11 @@
     .join-panel p.lead { color: rgba(251, 246, 238, 0.72); font-size: 18px; margin: 16px 0 30px; }
     form.waitlist { display: grid; gap: 14px; width: 100%; position: relative; z-index: 1; }
     .label { font-size: 14px; font-weight: 700; color: var(--sand); }
-    .field { height: 58px; border-radius: 8px; border: 1px solid rgba(251, 246, 238, 0.18); background: rgba(251, 246, 238, 0.06); padding: 0 18px; font: 500 17px 'Plus Jakarta Sans', sans-serif; color: var(--cream); width: 100%; transition: border-color .2s, background .2s; }
+    .field { height: 58px; border-radius: 5px; border: 1px solid rgba(251, 246, 238, 0.18); background: rgba(251, 246, 238, 0.06); padding: 0 18px; font: 500 17px 'Plus Jakarta Sans', sans-serif; color: var(--cream); width: 100%; transition: border-color .2s, background .2s; }
     .field::placeholder { color: rgba(251, 246, 238, 0.45); }
     .field:focus { outline: none; border-color: var(--sand); background: rgba(251, 246, 238, 0.1); }
     .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .chip { min-height: 52px; padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(251, 246, 238, 0.18); background: transparent; font: 600 14px/1.25 'Plus Jakarta Sans', sans-serif; color: rgba(251, 246, 238, 0.8); cursor: pointer; transition: all .2s; }
+    .chip { min-height: 52px; padding: 8px 10px; border-radius: 5px; border: 1px solid rgba(251, 246, 238, 0.18); background: transparent; font: 600 14px/1.25 'Plus Jakarta Sans', sans-serif; color: rgba(251, 246, 238, 0.8); cursor: pointer; transition: all .2s; }
     .chip[aria-pressed="true"] { background: var(--cream); border-color: var(--cream); color: var(--cocoa); }
     .join-panel .btn-cocoa { background: var(--honey); color: var(--cocoa); height: 58px; width: 100%; }
     .form-msg { min-height: 24px; font-weight: 700; color: var(--sand); }
@@ -228,10 +227,29 @@
     .foot-brand .tag span { color: var(--sand); }
     .foot-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
     .foot-cols h4 { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--honey); margin-bottom: 14px; }
-    .foot-cols a, .foot-cols span { display: block; text-decoration: none; color: rgba(251, 246, 238, 0.75); font-size: 15px; padding: 5px 0; }
+    .foot-cols a, .foot-cols span { display: block; overflow-wrap: anywhere; text-decoration: none; color: rgba(251, 246, 238, 0.75); font-size: 15px; padding: 5px 0; }
     .foot-cols a:hover { color: var(--cream); }
     .foot-cols .soon { color: rgba(251, 246, 238, 0.4); }
     .foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 24px; font-size: 14px; color: rgba(251, 246, 238, 0.45); }
+
+    /* Phones: everything a size smaller, so it feels calm and fits (DeBee) */
+    @media (max-width: 899px) {
+      body { font-size: 15px; }
+      h2 { font-size: clamp(26px, 7.4vw, 34px); }
+      .hero h1 { font-size: clamp(34px, 10.5vw, 46px); }
+      .hero p.lead { font-size: 16px; margin: 18px 0 26px; }
+      .split .words p, .full p, .stylists p, .faq-side p, .join-panel p.lead { font-size: 16px; }
+      .promise blockquote { font-size: 23px; }
+      .promise .by { font-size: 15px; }
+      .step-card h3 { font-size: 20px; }
+      .portrait .label b { font-size: 20px; }
+      .btn { height: 50px; font-size: 16px; }
+      summary { font-size: 17px; padding: 20px 0; }
+      details p { font-size: 15px; }
+      .foot-brand .tag { font-size: 24px; }
+      .kicker, .split .words .num, .full .num { font-size: 12px; }
+      section { padding: 64px 0; }
+    }
 
     /* Things glide up gently as they come into view */
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
@@ -261,6 +279,12 @@
       .split .photo { min-height: 0; }
       .split.flip .photo { order: 2; }
       .split .words { padding: 80px clamp(40px, 6vw, 96px); }
+      /* Together: the high-five photo fills the whole section, the words sit on a cocoa fade at the bottom (DeBee) */
+      .split.together { display: flex; align-items: flex-end; position: relative; min-height: 100vh; overflow: hidden; }
+      .split.together .photo { position: absolute; inset: 0; }
+      .split.together .photo img { object-position: center 30%; }
+      .split.together::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(42, 24, 16, 0.96) 0%, rgba(42, 24, 16, 0.78) 34%, rgba(42, 24, 16, 0) 64%); }
+      .split.together .words { position: relative; z-index: 1; background: none; max-width: 640px; padding: 0 20px 88px max(20px, calc((100vw - 1180px) / 2 + 20px)); }
       .full .wrap { padding-bottom: 88px; }
       /* Growth: the same placement as the routine, words on the left over a left fade */
       .full.growth { align-items: center; }
@@ -327,7 +351,6 @@
     <!-- The promise -->
     <section class="promise">
       <div class="collage" aria-hidden="true">
-        <img class="a" src="images/queen-twistout.webp" alt="" loading="lazy" />
         <img class="b" src="images/man-locs.webp" alt="" loading="lazy" />
       </div>
       <div class="wrap reveal">
@@ -386,7 +409,7 @@
         </div>
       </div>
 
-      <div class="split cocoa">
+      <div class="split cocoa together">
         <div class="photo wide"><img src="images/together.webp" alt="Two friends with natural hair laughing and high-fiving" width="2048" height="1152" loading="lazy" style="object-position: 50% 30%" /></div>
         <div class="words reveal">
           <span class="num">04 · STAY ON TRACK TOGETHER</span>
@@ -467,6 +490,7 @@
           <details><summary>Is it only for women?</summary><p>No. Tatas Lustre is for women, men, teens, little ones (with a parent) and hairstylists.</p></details>
           <details><summary>Are my photos private?</summary><p>Yes. Your hair photos stay private to you, always.</p></details>
           <details><summary>Is the AI coach a doctor?</summary><p>No. It gives friendly, general hair care tips. For scalp problems or hair loss, please see a dermatologist (skin doctor).</p></details>
+          <details><summary>How can I reach you?</summary><p>Email us any time at <a href="mailto:tatasradiantlustre@gmail.com">tatasradiantlustre@gmail.com</a>. We read every message.</p></details>
           <details><summary>When is it coming?</summary><p>Very soon, on Android first. Join the waitlist and you’ll be the first to know.</p></details>
         </div>
       </div>
@@ -484,6 +508,7 @@
           <div><h4>Explore</h4><a href="#how">How it works</a><a href="#inside">What’s inside</a><a href="#crowns">For everyone</a><a href="#stylists">For stylists</a></div>
           <div><h4>Join</h4><a href="#join">Waitlist</a><a href="#faq">Questions</a></div>
           <div><h4>Follow</h4><span class="soon">Instagram, soon</span><span class="soon">TikTok, soon</span></div>
+          <div><h4>Contact</h4><a href="mailto:tatasradiantlustre@gmail.com">tatasradiantlustre@gmail.com</a></div>
         </div>
       </div>
       <div class="foot-bottom">
