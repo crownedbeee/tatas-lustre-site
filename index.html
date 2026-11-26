@@ -51,7 +51,7 @@
     .btn[disabled] { background: var(--beige); color: var(--muted); cursor: default; transform: none; }
 
     /* Top bar: floats over the hero, turns to cocoa glass once you scroll */
-    header.top { position: fixed; inset: 0 0 auto 0; z-index: 20; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+    header.top { position: fixed; inset: 0 0 auto 0; z-index: 20; transition: background .3s, border-color .3s; border-bottom: 1px solid rgba(251, 246, 238, 0.12); } /* a faint line under the top bar, always (DeBee) */
     /* once you scroll: cocoa glass, the page glides softly blurred underneath */
     header.top.scrolled { background: rgba(58, 35, 24, 0.72); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border-bottom-color: rgba(251, 246, 238, 0.1); }
     .top-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
