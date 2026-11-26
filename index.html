@@ -54,7 +54,7 @@
     header.top { position: fixed; inset: 0 0 auto 0; z-index: 20; transition: background .3s, border-color .3s; border-bottom: 1px solid rgba(251, 246, 238, 0.12); } /* a faint line under the top bar, always (DeBee) */
     /* once you scroll: cocoa glass, the page glides softly blurred underneath */
     header.top.scrolled { background: rgba(58, 35, 24, 0.72); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border-bottom-color: rgba(251, 246, 238, 0.1); }
-    .top-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .top-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; box-sizing: content-box; padding-top: 8px; padding-bottom: 8px; } /* a little breathing room above and below (DeBee) */
     .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 18px; color: var(--cream); transition: color .3s; }
     /* DeBee's logo exactly as her file: stacked, the TL monogram on top, TATAS, then LUSTRE (logo-full.png, 720 x 776). */
     .brand-logo { display: block; height: 58px; width: auto; }
