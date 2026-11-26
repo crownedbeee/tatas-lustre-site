@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tatas Lustre · The Nub Of Hair Radiance</title>
+  <meta name="description" content="A gentle daily routine for natural hair. Keep the length you grow with a routine made for your hair, a kind AI hair coach and a calm way to see your growth." />
+  <meta property="og:title" content="Tatas Lustre · The Nub Of Hair Radiance" />
+  <meta property="og:description" content="A gentle daily routine for natural hair, made for your hair." />
+  <meta property="og:image" content="images/hero-woman.webp" />
+  <link rel="icon" href="images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/hero-woman.webp" />
+  <style>
+    :root {
+      --cocoa: #3A2318;
+      --cocoa-deep: #2A1810;
+      --honey: #F2B53A;
+      --caramel: #A86F45;
+      --beige: #F3E2CE;
+      --sand: #E9D3B8;
+      --outline: #C9976B;
+      --cream: #FBF6EE;
+      --white: #FFFFFF;
+      --ink: #2A1A12;
+      --muted: #8B7565;
+      --line: #EFE5D6;
+      --r: 13px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: var(--ink); background: var(--cream); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+    .kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--honey); }
+    .kicker::before { content: ''; width: 26px; height: 1.5px; background: currentColor; }
+    h1, h2, h3 { line-height: 1.05; letter-spacing: -0.03em; color: var(--cocoa); }
+    h2 { font-size: clamp(30px, 5.4vw, 60px); font-weight: 800; margin-top: 16px; }
+    p { color: var(--muted); }
+    .spark { color: var(--honey); } /* the only gold: tiny sparkles */
+    /* honey reads well on cocoa only; on white, beige and cream the labels are cocoa */
+    .faq .kicker { color: var(--cocoa); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 55px; padding: 0 28px; border-radius: 8px; font: 700 17px 'Plus Jakarta Sans', sans-serif; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s ease, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-light { background: var(--honey); color: var(--cocoa); } /* primary: honey */
+    .btn-line { background: transparent; color: var(--cream); border: 1px solid rgba(251, 246, 238, 0.3); }
+    .btn-cocoa { background: var(--cocoa); color: var(--cream); }
+    .btn[disabled] { background: var(--beige); color: var(--muted); cursor: default; transform: none; }
+
+    /* Top bar: floats over the hero, turns to cocoa glass once you scroll */
+    header.top { position: fixed; inset: 0 0 auto 0; z-index: 20; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+    /* once you scroll: cocoa glass, the page glides softly blurred underneath */
+    header.top.scrolled { background: rgba(58, 35, 24, 0.72); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border-bottom-color: rgba(251, 246, 238, 0.1); }
+    .top-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 18px; color: var(--cream); transition: color .3s; }
+    /* DeBee's logo exactly as her file: stacked, the TL monogram on top, TATAS, then LUSTRE (logo-full.png, 720 x 776). */
+    .brand-logo { display: block; height: 58px; width: auto; }
+    @media (max-width: 420px) {
+      .brand-logo { height: 50px; }
+      .top .btn { padding: 0 14px; font-size: 14px; }
+    }
+    nav.links { display: none; gap: 30px; font-weight: 600; font-size: 15px; }
+    nav.links a { text-decoration: none; color: var(--cream); }
+    .top .btn { height: 44px; padding: 0 18px; font-size: 15px; background: var(--honey); color: var(--cocoa); }
+
+    /* HERO: cocoa words on the left, the photo filling the whole right half */
+    .hero { background: var(--cocoa); color: var(--cream); position: relative; display: grid; }
+    .hero-text { padding: 120px 20px 48px; position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(40px, 8.6vw, 100px); font-weight: 800; color: var(--cream); margin-top: 20px; }
+    .hero h1 span { color: var(--sand); }
+    .hero p.lead { color: rgba(251, 246, 238, 0.72); font-size: 19px; max-width: 460px; margin: 24px 0 32px; }
+    .hero-ctas { display: grid; gap: 12px; }
+    .trust { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 30px; font-size: 14px; color: rgba(251, 246, 238, 0.6); }
+    .trust span::before { content: '✦ '; color: var(--honey); }
+    .hero-photo { position: relative; min-height: 120vw; }
+    .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .hero-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(42, 24, 16, 0.35), rgba(42, 24, 16, 0) 30%); pointer-events: none; }
+    .note { position: absolute; left: 16px; bottom: 16px; z-index: 1; display: flex; align-items: center; gap: 10px; background: rgba(42, 24, 16, 0.38); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(251, 246, 238, 0.22); color: var(--cream); border-radius: var(--r); padding: 12px 16px; font-weight: 700; font-size: 14px; line-height: 1.3; animation: float 6s ease-in-out infinite; }
+    .note .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--cream); display: grid; place-items: center; font-size: 15px; }
+    .note small { display: block; font-weight: 500; color: rgba(251, 246, 238, 0.75); font-size: 12px; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    /* A quiet beige band of words gliding past */
+    .band { background: var(--beige); color: var(--cocoa); overflow: hidden; white-space: nowrap; padding: 18px 0; font-weight: 700; font-size: clamp(17px, 2.2vw, 23px); border-bottom: 1px solid var(--sand); }
+    .band .track { display: inline-flex; gap: 32px; animation: glide 38s linear infinite; padding-left: 32px; }
+    .band span::after { content: '✦'; margin-left: 32px; color: var(--caramel); }
+    @keyframes glide { to { transform: translateX(-50%); } }
+
+    section { padding: 88px 0; }
+
+    /* The promise: full screen, three photos behind (queen on the left half, king top right,
+       mum and daughter bottom right), a cocoa veil, the words on top */
+    .promise { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: end center; overflow: hidden; background: var(--cocoa-deep); text-align: center; padding: 0 0 24px; }
+    .collage { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); overflow: hidden; } /* minmax(0, ...) keeps each photo inside its box */
+    .collage img { width: 100%; height: 100%; min-height: 0; object-fit: cover; }
+    .collage .a { object-position: center 100%; } /* faces sit higher, clear of the words */
+    .collage .b { object-position: center 100%; }
+    .promise .wrap { position: relative; z-index: 1; }
+    @media (max-width: 899px) {
+      /* phones: the photos on top, the words below on the brown, so no face is covered */
+      .promise { display: block; min-height: 0; padding: 0 0 40px; text-align: left; }
+      .collage { position: relative; height: 72vw; min-height: 280px; }
+      .promise .wrap { margin-top: 0; padding-top: 32px; }
+    }
+    .promise-card { max-width: 600px; margin: 0 auto; padding: 22px 26px; border-radius: var(--r); background: rgba(42, 24, 16, 0.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(251, 246, 238, 0.12); }
+    @media (max-width: 899px) { .promise-card { background: none; border: 0; padding: 0; -webkit-backdrop-filter: none; backdrop-filter: none; max-width: none; } } /* phones: plain words on the brown, no card */
+    .promise blockquote { font-size: clamp(24px, 2.8vw, 36px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--cream); margin-top: 20px; }
+    .promise blockquote span { color: var(--sand); }
+    .promise .by { margin-top: 18px; font-weight: 500; font-size: 17px; color: rgba(251, 246, 238, 0.82); }
+
+    /* How it works: the glossy coils photo behind, cocoa tint, cream words */
+    .how { position: relative; color: var(--cream); background: var(--cocoa-deep) url('images/how-woman.webp') 78% center / cover no-repeat; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
+    .how .wrap { width: 100%; }
+    .how::before { content: ''; position: absolute; inset: 0; background: rgba(42, 24, 16, 0.62); }
+    .how .wrap { position: relative; }
+    .how h2 { color: var(--cream); }
+    .steps { display: grid; gap: 14px; margin-top: 44px; }
+    .step-card { background: rgba(251, 246, 238, 0.08); border-radius: var(--r); padding: 30px 28px; border: 1px solid rgba(251, 246, 238, 0.16); backdrop-filter: blur(6px); }
+    .step-card .num { width: 48px; height: 48px; border-radius: 50%; background: var(--cream); color: var(--cocoa); display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+    .step-card h3 { font-size: 24px; margin-top: 20px; color: var(--cream); }
+    .step-card p { margin-top: 8px; color: rgba(251, 246, 238, 0.72); }
+    /* each step drops in gently from above, one after the other */
+    .steps .step-card.reveal { transform: translateY(-34px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .8, .2, 1); }
+    .steps .step-card.reveal.in { transform: none; }
+    .steps .step-card:nth-child(2) { transition-delay: .35s; }
+    .steps .step-card:nth-child(3) { transition-delay: .7s; }
+
+    /* Full screen photo sections (Routine, Growth): the photo fills the screen, words sit on a cocoa fade */
+    .full { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; color: var(--cream); }
+    .full > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .full::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(42, 24, 16, 0.94) 0%, rgba(42, 24, 16, 0.7) 32%, rgba(42, 24, 16, 0) 62%); }
+    .full .wrap { position: relative; z-index: 1; padding-top: 120px; padding-bottom: 56px; }
+    .full .words { max-width: 520px; }
+    .full .num { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; color: var(--honey); }
+    .full h2 { color: var(--white); }
+    .full p { font-size: 18px; margin-top: 16px; color: rgba(255, 255, 255, 0.92); }
+    .full .pill { background: rgba(251, 246, 238, 0.12); border-color: rgba(251, 246, 238, 0.25); color: var(--cream); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+    .full.growth > img { object-position: 52% center; }
+
+    /* Features: split screens, the photo filling half the width edge to edge */
+    #inside { padding: 0; }
+    .split { display: grid; }
+    .split .photo { position: relative; min-height: 92vw; }
+    .split .photo.wide { min-height: 56.25vw; } /* a wide photo (two people): show it whole on phones */
+    .split .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .split .words { padding: 56px 20px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .split.beige .words { background: var(--beige); }
+    .split.white .words { background: var(--white); }
+    .split.cocoa .words { background: var(--cocoa); }
+    .split.cocoa h2 { color: var(--cream); }
+    .split.cocoa .words p { color: rgba(251, 246, 238, 0.82); }
+    .split.cocoa .words .num { color: var(--honey); }
+    .split.cocoa .pill { background: rgba(251, 246, 238, 0.1); border-color: rgba(251, 246, 238, 0.22); color: var(--cream); }
+    .split .words .num { font-size: 15px; font-weight: 800; color: var(--cocoa); letter-spacing: 0.08em; }
+    .split .words p { font-size: 18px; margin-top: 16px; max-width: 460px; }
+    .pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-top: 22px; padding: 10px 14px; border-radius: var(--r); background: var(--white); border: 1px solid var(--line); color: var(--cocoa); font-weight: 600; font-size: 15px; }
+    .ai-tag { display: inline-flex; align-items: center; gap: 3px; background: var(--honey); color: var(--cocoa); font-weight: 800; font-size: 11px; border-radius: 6px; padding: 2px 7px; letter-spacing: 0; text-transform: none; }
+
+    /* Every crown: tall portraits, swipeable on a phone */
+    .crowns { background: var(--cocoa); }
+    .crowns h2 { color: var(--cream); }
+    .crowns-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; }
+    .crowns-head p { max-width: 360px; color: rgba(251, 246, 238, 0.7); }
+    .rail { display: grid; grid-auto-flow: column; grid-auto-columns: 74%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin-top: 40px; padding: 0 20px 6px; scrollbar-width: none; }
+    .rail::-webkit-scrollbar { display: none; }
+    .portrait { scroll-snap-align: center; position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 3 / 4; background: var(--cocoa-deep); }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .portrait:hover img { transform: scale(1.04); }
+    .portrait .label { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 14px 16px; border-radius: 10px; background: rgba(42, 24, 16, 0.35); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(251, 246, 238, 0.18); color: var(--cream); }
+    .portrait .label b { display: block; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+    .portrait .label span { font-size: 14px; color: rgba(251, 246, 238, 0.85); }
+    .swipe-hint { margin-top: 14px; font-size: 14px; color: rgba(251, 246, 238, 0.6); text-align: center; }
+
+    /* Stylists: the salon photo with the glass card on the free side (in front of the client), so the stylist shows */
+    .stylists { position: relative; overflow: hidden; color: var(--cream); background: var(--cocoa); padding: 0; }
+    .stylists > img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transform: scale(1.04); } /* scale hides a thin edge on this photo */
+    .stylists .wrap { position: relative; z-index: 2; padding-top: 0; padding-bottom: 64px; margin-top: -48px; }
+    .glass { max-width: 520px; padding: 32px 28px; border-radius: var(--r); background: rgba(42, 24, 16, 0.42); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid rgba(251, 246, 238, 0.16); }
+    .stylists h2 { color: var(--cream); }
+    .stylists p { font-size: 18px; margin-top: 16px; color: rgba(251, 246, 238, 0.82); }
+
+    /* Waitlist: split screen, the family photo on one half, the form on cocoa */
+    .join { padding: 0; display: grid; background: var(--cocoa); }
+    .join-photo { position: relative; min-height: 78vw; }
+    .join-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 25%; }
+    .join-panel { padding: 64px 20px 72px; color: var(--cream); display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .join-panel::after { content: ''; position: absolute; right: -120px; bottom: -120px; width: 360px; height: 360px; border-radius: 50%; border: 1px solid rgba(251, 246, 238, 0.08); outline: 1px solid rgba(251, 246, 238, 0.05); outline-offset: 50px; pointer-events: none; }
+    .join-panel h2 { color: var(--cream); }
+    .join-panel > .reveal { width: 100%; max-width: 480px; margin: 0 auto; } /* heading, words, email, choices and button share one width */
+    .join-panel p.lead { color: rgba(251, 246, 238, 0.72); font-size: 18px; margin: 16px 0 30px; }
+    form.waitlist { display: grid; gap: 14px; width: 100%; position: relative; z-index: 1; }
+    .label { font-size: 14px; font-weight: 700; color: var(--sand); }
+    .field { height: 58px; border-radius: 8px; border: 1px solid rgba(251, 246, 238, 0.18); background: rgba(251, 246, 238, 0.06); padding: 0 18px; font: 500 17px 'Plus Jakarta Sans', sans-serif; color: var(--cream); width: 100%; transition: border-color .2s, background .2s; }
+    .field::placeholder { color: rgba(251, 246, 238, 0.45); }
+    .field:focus { outline: none; border-color: var(--sand); background: rgba(251, 246, 238, 0.1); }
+    .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .chip { min-height: 52px; padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(251, 246, 238, 0.18); background: transparent; font: 600 14px/1.25 'Plus Jakarta Sans', sans-serif; color: rgba(251, 246, 238, 0.8); cursor: pointer; transition: all .2s; }
+    .chip[aria-pressed="true"] { background: var(--cream); border-color: var(--cream); color: var(--cocoa); }
+    .join-panel .btn-cocoa { background: var(--honey); color: var(--cocoa); height: 58px; width: 100%; }
+    .form-msg { min-height: 24px; font-weight: 700; color: var(--sand); }
+    .promise-line { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(251, 246, 238, 0.55); }
+
+    /* Questions: heading on the left, clean lines on the right */
+    .faq { background: var(--beige); }
+    .faq-grid { display: grid; gap: 36px; }
+    .faq-side p { font-size: 18px; margin-top: 16px; max-width: 320px; }
+    .faq-list { border-top: 1px solid var(--sand); }
+    details { border-bottom: 1px solid var(--sand); }
+    summary { cursor: pointer; font-weight: 700; font-size: clamp(18px, 2vw, 21px); color: var(--cocoa); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 24px 0; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--outline); color: var(--cocoa); display: grid; place-items: center; font-size: 20px; font-weight: 500; line-height: 1; transition: transform .3s ease, background .3s; }
+    details[open] summary::after { transform: rotate(45deg); background: var(--cocoa); color: var(--cream); border-color: var(--cocoa); }
+    details p { padding: 0 52px 24px 0; font-size: 17px; animation: open .35s ease; }
+    @keyframes open { from { opacity: 0; transform: translateY(-6px); } }
+
+    /* Footer: the full logo, the tagline, three small columns */
+    footer { position: relative; background: var(--cocoa-deep); color: rgba(251, 246, 238, 0.65); padding: 72px 0 32px; overflow: hidden; }
+    footer::before { content: ''; position: absolute; inset: 0; background: url('images/texture.webp') center / cover; opacity: 0.07; }
+    footer .wrap { position: relative; }
+    .foot-top { display: grid; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(251, 246, 238, 0.12); }
+    .foot-logo { width: 130px; height: auto; }
+    @media (max-width: 899px) { .foot-logo { width: 84px; } } /* phones: a smaller footer logo (DeBee) */
+    .foot-brand .tag { font-size: clamp(26px, 3.6vw, 38px); font-weight: 800; color: var(--cream); letter-spacing: -0.02em; line-height: 1.1; margin-top: 24px; max-width: 420px; }
+    .foot-brand .tag span { color: var(--sand); }
+    .foot-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .foot-cols h4 { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--honey); margin-bottom: 14px; }
+    .foot-cols a, .foot-cols span { display: block; text-decoration: none; color: rgba(251, 246, 238, 0.75); font-size: 15px; padding: 5px 0; }
+    .foot-cols a:hover { color: var(--cream); }
+    .foot-cols .soon { color: rgba(251, 246, 238, 0.4); }
+    .foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 24px; font-size: 14px; color: rgba(251, 246, 238, 0.45); }
+
+    /* Things glide up gently as they come into view */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .band .track, .note { animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    @media (min-width: 900px) {
+      section { padding: 128px 0; }
+      nav.links { display: flex; }
+      .hero { grid-template-columns: 1fr 1fr; min-height: 100vh; }
+      .hero-text { padding: 140px 56px 72px max(20px, calc((100vw - 1180px) / 2 + 20px)); display: flex; flex-direction: column; justify-content: center; }
+      .hero-ctas { display: flex; flex-wrap: wrap; }
+      .hero-photo { min-height: 0; }
+      .note { left: -36px; bottom: 56px; }
+      .how::before { background: linear-gradient(to right, rgba(42, 24, 16, 0.9) 0%, rgba(42, 24, 16, 0.7) 40%, rgba(42, 24, 16, 0) 68%); }
+      .how .wrap > * { max-width: 600px; }
+      .steps { grid-template-columns: 1fr; gap: 12px; }
+      .step-card { display: grid; grid-template-columns: auto 1fr; column-gap: 18px; align-items: start; padding: 22px 24px; }
+      .step-card .num { grid-row: 1 / 3; }
+      .step-card h3 { margin-top: 2px; font-size: 21px; }
+      .step-card p { margin-top: 4px; }
+      .split { grid-template-columns: 1fr 1fr; min-height: 88vh; }
+      .split .photo { min-height: 0; }
+      .split.flip .photo { order: 2; }
+      .split .words { padding: 80px clamp(40px, 6vw, 96px); }
+      .full .wrap { padding-bottom: 88px; }
+      /* Growth: the same placement as the routine, words on the left over a left fade */
+      .full.growth { align-items: center; }
+      .full.growth > img { object-position: center 30%; }
+      .full.growth::after { background: linear-gradient(to right, rgba(42, 24, 16, 0.92) 0%, rgba(42, 24, 16, 0.72) 30%, rgba(42, 24, 16, 0) 58%); }
+      .full.growth .wrap { padding-top: 88px; }
+      .stylists { min-height: 100vh; display: flex; align-items: flex-start; padding-top: 120px; } /* card sits high, above the client, so both faces show */
+      .stylists .glass { max-width: 440px; }
+      .stylists > img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 25% center; }
+      .stylists::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(42, 24, 16, 0.9) 22%, rgba(42, 24, 16, 0) 58%); }
+      .stylists .wrap { margin-top: 0; padding-bottom: 0; display: flex; justify-content: flex-end; }
+      .rail { grid-auto-columns: calc((100% - 42px) / 4); overflow: visible; padding: 0 20px; }
+      .swipe-hint { display: none; }
+      .join { grid-template-columns: 1fr 1fr; min-height: 92vh; }
+      .join-photo { min-height: 0; }
+      .join-panel { padding: 96px clamp(40px, 6vw, 96px); }
+      .faq-grid { grid-template-columns: 0.8fr 1.2fr; gap: 80px; }
+      .faq-side { position: sticky; top: 110px; align-self: start; }
+      .foot-top { grid-template-columns: 1.2fr 1fr; }
+      .foot-cols { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header class="top" id="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#" aria-label="Tatas Lustre"><img class="brand-logo" src="images/logo-full.png" alt="Tatas Lustre" width="54" height="58" /></a>
+      <nav class="links" aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#inside">What’s inside</a>
+        <a href="#crowns">For everyone</a>
+        <a href="#stylists">For stylists</a>
+      </nav>
+      <a class="btn" href="#join">Join the waitlist</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: words on cocoa, the photo filling the right half -->
+    <section class="hero" aria-label="Tatas Lustre" style="padding: 0">
+      <div class="hero-text">
+        <span class="kicker">For every coil, kink and curl</span>
+        <h1>The Nub Of <span>Hair Radiance</span></h1>
+        <p class="lead">Your hair has waited long enough for a routine that truly gets it. Tiny daily steps, made for your crown, so the length you grow is the length you keep.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-light" href="#join">Join the waitlist</a>
+          <a class="btn btn-line" href="#how">See how it works</a>
+        </div>
+        <div class="trust"><span>Free to start</span><span>For women, men, children and stylists</span><span>Your photos stay private</span></div>
+      </div>
+      <div class="hero-photo">
+        <img src="images/hero-woman.webp" alt="A joyful woman laughing, with a big glossy natural afro" width="1536" height="2048" fetchpriority="high" />
+        <div class="note" aria-hidden="true"><span class="dot"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3 3 7-7" fill="none" stroke="#A86F45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Day 12 streak<small>Moisturise, done</small></span></div>
+      </div>
+    </section>
+
+    <div class="band" aria-hidden="true">
+      <div class="track">
+        <span>Moisture</span><span>Length kept</span><span>Coils</span><span>Kinks</span><span>Locs</span><span>Edges</span><span>Wash day</span><span>Twist-outs</span><span>Satin nights</span>
+        <span>Moisture</span><span>Length kept</span><span>Coils</span><span>Kinks</span><span>Locs</span><span>Edges</span><span>Wash day</span><span>Twist-outs</span><span>Satin nights</span>
+      </div>
+    </div>
+
+    <!-- The promise -->
+    <section class="promise">
+      <div class="collage" aria-hidden="true">
+        <img class="a" src="images/queen-twistout.webp" alt="" loading="lazy" />
+        <img class="b" src="images/man-locs.webp" alt="" loading="lazy" />
+      </div>
+      <div class="wrap reveal">
+        <div class="promise-card">
+        <span class="kicker">Our promise</span>
+        <blockquote>Your hair isn’t a problem to fix. It’s a <span>crown to care for.</span></blockquote>
+        <p class="by">No harsh rules. No guilt. Just gentle care that adds up, one day at a time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how" id="how">
+      <div class="wrap">
+        <span class="kicker reveal">How it works</span>
+        <h2 class="reveal">Three steps. Zero overwhelm.</h2>
+        <div class="steps">
+          <div class="step-card reveal"><div class="num">1</div><h3>Tell us about your hair</h3><p>A few quick questions, no wrong answers, promise. It helps us shape everything around your hair type and what your hair needs.</p></div>
+          <div class="step-card reveal"><div class="num">2</div><h3>Get your routine</h3><p>Gentle steps made for your hair, your wash day and your real life.</p></div>
+          <div class="step-card reveal"><div class="num">3</div><h3>Watch it thrive</h3><p>Tick, glow, repeat. Then look back and see how far you’ve come.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's inside -->
+    <section id="inside">
+      <div class="split cocoa">
+        <div class="photo"><img src="images/routine.webp" alt="A smiling woman misting her natural coils with a spray bottle" width="2048" height="1536" loading="lazy" style="object-position: 18% center" /></div>
+        <div class="words reveal">
+          <span class="num">01 · YOUR ROUTINE</span>
+          <h2>A routine that actually gets your hair</h2>
+          <p>Built around your coils, your porosity and your schedule. A few minutes a day, and your ends will thank you.</p>
+          <span class="pill"><span class="spark">✦</span> Just minutes a day</span>
+        </div>
+      </div>
+
+      <div class="split cocoa flip">
+        <div class="photo"><img src="images/friends.webp" alt="Two friends laughing together, one with a big curly afro" width="2048" height="1536" loading="lazy" style="object-position: 60% center" /></div>
+        <div class="words reveal">
+          <span class="num">02 · YOUR HAIR COACH</span>
+          <h2>Your hair questions, answered kindly</h2>
+          <p>Breakage? Dryness? Dandruff? Hair that just won’t grow? Ask anything, any time, and get clear, gentle steps made for your hair.</p>
+          <span class="pill"><span class="ai-tag">✦ AI</span> Always on, never judgy</span>
+        </div>
+      </div>
+
+      <div class="full growth">
+        <img src="images/growth.webp" alt="A happy woman showing the length of her long curls" width="2048" height="1536" loading="lazy" />
+        <div class="wrap">
+          <div class="words reveal">
+            <span class="num">03 · YOUR GROWTH</span>
+            <h2>Your hair is growing. Here’s the proof.</h2>
+            <p>We believe in your hair, and soon you will too. Little monthly check-ins let you look back and see, with your own eyes, how far it has grown. For your eyes only.</p>
+            <span class="pill"><span class="spark">✦</span> Your photos stay private</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="split cocoa">
+        <div class="photo wide"><img src="images/together.webp" alt="Two friends with natural hair laughing and high-fiving" width="2048" height="1152" loading="lazy" style="object-position: 50% 30%" /></div>
+        <div class="words reveal">
+          <span class="num">04 · STAY ON TRACK TOGETHER</span>
+          <h2>Better together, every single day</h2>
+          <p>Keep your streak glowing, cheer your friends on and take on fun little challenges side by side. At the end of each month, look back on your own hair story and feel proud of every step.</p>
+          <span class="pill"><span class="spark">✦</span> Little wins, every day</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Every crown -->
+    <section class="crowns" id="crowns">
+      <div class="wrap crowns-head">
+        <div>
+          <span class="kicker reveal">For everyone</span>
+          <h2 class="reveal">Every crown<br />is welcome</h2>
+        </div>
+        <p class="reveal">Queens, kings, teens and little ones. Same love, made to fit.</p>
+      </div>
+      <div class="wrap" style="padding: 0">
+        <div class="rail reveal">
+          <div class="portrait"><img src="images/queen-twistout.webp" alt="A woman smiling, with glossy twists" width="1536" height="2048" loading="lazy" /><div class="label"><b>Queens</b><span>Soft, strong and seen</span></div></div>
+          <div class="portrait"><img src="images/man-locs.webp" alt="A man smiling, with shoulder-length locs" width="1536" height="2048" loading="lazy" /><div class="label"><b>Kings</b><span>Locs, waves or a fro, we’ve got you</span></div></div>
+          <div class="portrait"><img src="images/teen.webp" alt="A teenage girl laughing, with her natural coils worn out" style="object-position: center 70%" width="1536" height="2048" loading="lazy" /><div class="label"><b>Teens</b><span>Quick steps between school and everything</span></div></div>
+          <div class="portrait"><img src="images/kids.webp" alt="A mother gently doing her little girl’s hair on the sofa" width="1536" height="2048" loading="lazy" /><div class="label"><b>Little ones</b><span>Gentle, tear-free hair days</span></div></div>
+        </div>
+        <p class="swipe-hint">Swipe to meet everyone →</p>
+      </div>
+    </section>
+
+    <!-- Stylists -->
+    <section class="stylists" id="stylists">
+      <img src="images/stylist.webp" alt="A stylist braiding a laughing client’s hair in a warm salon" width="2048" height="1536" loading="lazy" />
+      <div class="wrap">
+        <div class="reveal glass">
+          <span class="kicker">For stylists</span>
+          <h2>Made for stylists too</h2>
+          <p>Your clients’ hair cared for between visits, and your business growing with every chair you fill. More very soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Waitlist -->
+    <section class="join" id="join">
+      <div class="join-photo"><img src="images/group.webp" alt="A happy family with beautiful natural hair, laughing together" width="2048" height="1152" loading="lazy" /></div>
+      <div class="join-panel">
+        <div class="reveal">
+          <span class="kicker">Be the first to know</span>
+          <h2>Your crown is calling</h2>
+          <p class="lead">Join the waitlist and be first in line the moment Tatas Lustre launches.</p>
+          <form class="waitlist" id="waitlist" novalidate>
+            <label class="label" for="email">Your email</label>
+            <input class="field" id="email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+            <span class="label" style="margin-top: 6px">I’m joining</span>
+            <div class="chips" role="group" aria-label="I’m joining">
+              <button type="button" class="chip" data-who="me" aria-pressed="true">For my hair</button>
+              <button type="button" class="chip" data-who="family" aria-pressed="false">For my family</button>
+              <button type="button" class="chip" data-who="stylist" aria-pressed="false">I’m a stylist</button>
+            </div>
+            <button class="btn btn-cocoa" type="submit" style="margin-top: 8px">Join the waitlist</button>
+            <p class="form-msg" id="form-msg" role="status"></p>
+            <p class="promise-line"><span class="spark">✦</span> No spam. Just one email when we launch.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Questions -->
+    <section class="faq" id="faq">
+      <div class="wrap faq-grid">
+        <div class="faq-side reveal">
+          <span class="kicker">Questions</span>
+          <h2>Good to know</h2>
+          <p>The things people ask us most. Anything else? Ask us when we launch.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details open><summary>Is it free?</summary><p>Yes, you can start for free. Some extras will be part of Premium later.</p></details>
+          <details><summary>Is it only for women?</summary><p>No. Tatas Lustre is for women, men, teens, little ones (with a parent) and hairstylists.</p></details>
+          <details><summary>Are my photos private?</summary><p>Yes. Your hair photos stay private to you, always.</p></details>
+          <details><summary>Is the AI coach a doctor?</summary><p>No. It gives friendly, general hair care tips. For scalp problems or hair loss, please see a dermatologist (skin doctor).</p></details>
+          <details><summary>When is it coming?</summary><p>Very soon, on Android first. Join the waitlist and you’ll be the first to know.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <img class="foot-logo" src="images/logo-full.png" alt="Tatas Lustre" width="130" />
+          <p class="tag">The Nub Of <span>Hair Radiance</span></p>
+        </div>
+        <div class="foot-cols">
+          <div><h4>Explore</h4><a href="#how">How it works</a><a href="#inside">What’s inside</a><a href="#crowns">For everyone</a><a href="#stylists">For stylists</a></div>
+          <div><h4>Join</h4><a href="#join">Waitlist</a><a href="#faq">Questions</a></div>
+          <div><h4>Follow</h4><span class="soon">Instagram, soon</span><span class="soon">TikTok, soon</span></div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Tatas Lustre. Made with love for every crown.</span>
+        <span>Privacy and Terms: coming soon</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (() => {
+    // The top bar turns cream once you scroll
+    const topBar = document.getElementById('top');
+    const onScroll = () => topBar.classList.toggle('scrolled', scrollY > 40);
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Gentle glide-up as things come into view
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // Waitlist: saves the email in Supabase (table waitlist: anyone may add, nobody may read)
+    const SUPABASE_URL = 'https://hyfjkoexwbscfnugunuk.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_yNkEAZVBzcoXuZ_-kmV3uA_E3A6GWid';
+    const form = document.getElementById('waitlist');
+    const msg = document.getElementById('form-msg');
+    let who = 'me';
+    form.querySelectorAll('.chip').forEach((chip) =>
+      chip.addEventListener('click', () => {
+        who = chip.dataset.who;
+        form.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      }),
+    );
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.email.value.trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return (msg.textContent = 'That email doesn’t look right. Check it?');
+      const button = form.querySelector('button[type=submit]');
+      button.disabled = true;
+      msg.textContent = '';
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({ email, who }),
+        });
+        if (res.ok || res.status === 409) {
+          msg.textContent = res.status === 409 ? 'You’re already on the list. See you soon!' : 'You’re on the list! We’ll be in touch soon.';
+          form.email.value = '';
+        } else msg.textContent = 'That didn’t work. Please try again.';
+      } catch {
+        msg.textContent = 'You seem to be offline. Please try again.';
+      }
+      button.disabled = false;
+    });
+  })();
+  </script>
+</body>
+</html>
