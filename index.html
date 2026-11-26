@@ -86,7 +86,7 @@
     /* A quiet beige band of words gliding past */
     .band { background: var(--beige); color: var(--cocoa); overflow: hidden; white-space: nowrap; padding: 18px 0; font-weight: 700; font-size: clamp(17px, 2.2vw, 23px); border-bottom: 1px solid var(--sand); }
     .band .track { display: inline-flex; gap: 32px; animation: glide 38s linear infinite; padding-left: 32px; }
-    .band span::after { content: '✦'; margin-left: 32px; color: var(--caramel); }
+    .band span::after { content: ''; display: inline-block; width: 0.8em; height: 0.8em; margin-left: 32px; vertical-align: -0.05em; background: var(--caramel); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5C9 7 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0C18.5 10.6 15 7 12 2.5z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5C9 7 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0C18.5 10.6 15 7 12 2.5z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat; } /* a little drop between the words (DeBee) */
     @keyframes glide { to { transform: translateX(-50%); } }
 
     section { padding: 88px 0; }
