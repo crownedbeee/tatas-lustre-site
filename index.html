@@ -3,6 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    // the opening: once per visit, and not for people who prefer less motion (DeBee, 27 Nov 2026)
+    (function () {
+      var d = document.documentElement, first = true;
+      try { first = !sessionStorage.getItem('tl-intro'); sessionStorage.setItem('tl-intro', '1'); } catch (e) {}
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('arrive');
+      var go = function () { requestAnimationFrame(function () { d.classList.add('go'); }); };
+      if (first) { d.classList.add('intro'); setTimeout(function () { d.classList.add('lifted'); setTimeout(go, 200); }, 1250); }
+      else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+      setTimeout(function () { d.classList.add('lifted', 'go'); }, 3000); // safety: never stay hidden
+    })();
+  </script>
   <title>Tatas Lustre · Natural Hair Care App for Length Retention</title>
   <meta name="description" content="Tatas Lustre is a natural hair care app for length retention: a gentle daily routine made for your hair type and porosity, an AI hair coach, growth tracking and short lessons. For women, men, teens, kids and hairstylists." />
   <meta name="keywords" content="natural hair app, natural hair routine, length retention, hair growth tracker, 4c hair care, type 4 hair, curly hair routine, hair porosity, AI hair coach, protective styles, hair care app Nigeria" />
@@ -31,6 +44,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/logo-mark.png" />
   <link rel="preload" as="image" href="images/hero-woman.webp" />
   <style>
     :root {
@@ -282,6 +296,21 @@
       section { padding: 64px 0; }
     }
 
+    /* The opening: cocoa, her gold TL fades and grows in, then the screen softly lifts away */
+    #intro { display: none; }
+    .intro #intro { display: grid; place-items: center; position: fixed; inset: 0; z-index: 100; background: var(--cocoa); transition: opacity .6s ease, visibility .6s; }
+    .intro #intro img { width: 84px; height: auto; opacity: 0; transform: scale(.88); animation: introLogo .9s cubic-bezier(.2, .8, .2, 1) forwards; }
+    @keyframes introLogo { to { opacity: 1; transform: none; } }
+    .intro.lifted #intro { opacity: 0; visibility: hidden; }
+    /* then the hero arrives in order: heading, title, words, buttons, the three points, the photo */
+    .arrive .hero-text > *, .arrive .hero-photo { opacity: 0; transform: translateY(18px); }
+    .arrive.go .hero-text > *, .arrive.go .hero-photo { opacity: 1; transform: none; transition: opacity .8s ease, transform .9s cubic-bezier(.2, .8, .2, 1); }
+    .arrive.go .hero-text > :nth-child(2) { transition-delay: .12s; }
+    .arrive.go .hero-text > :nth-child(3) { transition-delay: .24s; }
+    .arrive.go .hero-text > :nth-child(4) { transition-delay: .36s; }
+    .arrive.go .hero-text > :nth-child(5) { transition-delay: .48s; }
+    .arrive.go .hero-photo { transition-delay: .3s; }
+
     /* Things glide up gently as they come into view */
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
     .reveal.in { opacity: 1; transform: none; }
@@ -340,6 +369,7 @@
   </style>
 </head>
 <body>
+  <div id="intro" aria-hidden="true"><img src="images/logo-mark.png" alt="" /></div>
   <header class="top" id="top">
     <div class="wrap top-inner">
       <a class="brand" href="#" aria-label="Tatas Lustre"><img class="brand-logo" src="images/logo-full.png" alt="Tatas Lustre" width="54" height="58" /></a>
