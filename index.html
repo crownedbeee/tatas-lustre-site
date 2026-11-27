@@ -112,7 +112,8 @@
 
     /* The promise (DeBee, 27 Nov 2026): no photo, just the words on deep cocoa, with her gold monogram
        large and faint behind them and a few soft caramel drops floating around */
-    .promise { position: relative; overflow: hidden; background: var(--cocoa-deep); text-align: center; padding: 140px 0; }
+    .promise { position: relative; overflow: hidden; background: var(--cocoa-deep); text-align: center; padding: 120px 0; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; } /* fills the screen (DeBee) */
+    .promise > .wrap { width: 100%; }
     .promise::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(78vw, 560px); aspect-ratio: 1; transform: translate(-50%, -50%); background: url('images/logo-mark.png') center / contain no-repeat; opacity: 0.06; pointer-events: none; }
     .promise .wrap { position: relative; z-index: 1; }
     .promise .drop { position: absolute; background: var(--caramel); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5C9 7 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0C18.5 10.6 15 7 12 2.5z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5C9 7 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0C18.5 10.6 15 7 12 2.5z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat; pointer-events: none; animation: drift 9s ease-in-out infinite; }
