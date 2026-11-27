@@ -122,14 +122,14 @@
     .promise .d3 { width: 26px; height: 26px; right: 14%; top: 28%; opacity: 0.3; animation-delay: -5s; }
     .promise .d4 { width: 14px; height: 14px; right: 24%; bottom: 22%; opacity: 0.4; background: var(--honey); animation-delay: -7s; }
     @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-    .promise-card { max-width: 720px; margin: 0 auto; }
+    .promise-card { max-width: 1000px; margin: 0 auto; }
     @media (max-width: 899px) {
       .promise { padding: 88px 0; }
       .promise .d1 { left: 6%; top: 10%; } .promise .d3 { right: 6%; top: 14%; } .promise .d2 { left: 10%; bottom: 8%; } .promise .d4 { right: 12%; bottom: 10%; }
     }
-    .promise blockquote { font-size: clamp(28px, 4vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--cream); margin-top: 20px; }
+    .promise blockquote { font-size: clamp(36px, 5.6vw, 84px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--cream); margin-top: 20px; }
     .promise blockquote span { color: var(--sand); }
-    .promise .by { margin-top: 18px; font-weight: 500; font-size: 17px; color: rgba(251, 246, 238, 0.82); }
+    .promise .by { margin-top: 28px; font-weight: 500; font-size: clamp(18px, 1.6vw, 23px); color: rgba(251, 246, 238, 0.82); }
 
     /* How it works: the glossy coils photo behind, cocoa tint, cream words */
     .how { position: relative; color: var(--cream); background: var(--cocoa-deep) url('images/how-woman.webp') 78% center / cover no-repeat; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
@@ -262,8 +262,8 @@
       .hero h1 { font-size: clamp(34px, 10.5vw, 46px); }
       .hero p.lead { font-size: 16px; margin: 18px 0 26px; }
       .split .words p, .full p, .stylists p, .faq-side p, .join-panel p.lead { font-size: 16px; }
-      .promise blockquote { font-size: 23px; }
-      .promise .by { font-size: 15px; }
+      .promise blockquote { font-size: 34px; }
+      .promise .by { font-size: 17px; margin-top: 20px; }
       .step-card h3 { font-size: 20px; }
       .portrait .label b { font-size: 20px; }
       .btn { height: 50px; font-size: 16px; }
@@ -373,7 +373,6 @@
 
     <!-- The promise -->
     <section class="promise">
-      <span class="drop d1" aria-hidden="true"></span><span class="drop d2" aria-hidden="true"></span><span class="drop d3" aria-hidden="true"></span><span class="drop d4" aria-hidden="true"></span>
       <div class="wrap reveal">
         <div class="promise-card">
         <span class="kicker">Our promise</span>
