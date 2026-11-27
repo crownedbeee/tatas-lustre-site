@@ -110,26 +110,35 @@
 
     section { padding: 88px 0; }
 
-    /* The promise (DeBee, 27 Nov 2026): no photo, just the words on deep cocoa, with her gold monogram
-       large and faint behind them and a few soft caramel drops floating around */
-    .promise { position: relative; overflow: hidden; background: var(--cocoa-deep); text-align: center; padding: 120px 0; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; } /* fills the screen (DeBee) */
-    .promise > .wrap { width: 100%; }
-    .promise::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(78vw, 560px); aspect-ratio: 1; transform: translate(-50%, -50%); background: url('images/logo-mark.png') center / contain no-repeat; opacity: 0.06; pointer-events: none; }
-    .promise .wrap { position: relative; z-index: 1; }
-    .promise .drop { position: absolute; background: var(--caramel); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5C9 7 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0C18.5 10.6 15 7 12 2.5z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5C9 7 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0C18.5 10.6 15 7 12 2.5z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat; pointer-events: none; animation: drift 9s ease-in-out infinite; }
-    .promise .d1 { width: 34px; height: 34px; left: 12%; top: 20%; opacity: 0.35; }
-    .promise .d2 { width: 18px; height: 18px; left: 22%; bottom: 18%; opacity: 0.25; animation-delay: -3s; }
-    .promise .d3 { width: 26px; height: 26px; right: 14%; top: 28%; opacity: 0.3; animation-delay: -5s; }
-    .promise .d4 { width: 14px; height: 14px; right: 24%; bottom: 22%; opacity: 0.4; background: var(--honey); animation-delay: -7s; }
-    @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-    .promise-card { max-width: 1000px; margin: 0 auto; }
+    /* The promise (DeBee, 27 Nov 2026): deep cocoa, her gold monogram faint behind, the words in capitals.
+       On a laptop it holds still while you scroll: "Our promise" slides in, the words fade in one by one,
+       small photos open up between them, then the line underneath. Phones show it all at once. */
+    .promise { position: relative; background: var(--cocoa-deep); text-align: center; padding: 0; }
+    .promise-stage { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 110px 0 80px; }
+    .promise-stage::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(78vw, 600px); aspect-ratio: 1; transform: translate(-50%, -50%); background: url('images/logo-mark.png') center / contain no-repeat; opacity: 0.06; pointer-events: none; }
+    .promise-stage > .wrap { position: relative; z-index: 1; width: 100%; }
+    .promise-card { max-width: 1100px; margin: 0 auto; }
+    .promise blockquote { font-size: clamp(32px, 4.6vw, 72px); font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; text-transform: uppercase; color: var(--cream); margin-top: 22px; }
+    .promise blockquote em { font-style: normal; color: var(--sand); }
+    .promise .pic { display: inline-block; height: 0.82em; width: 1.7em; border-radius: 999px; overflow: hidden; vertical-align: -0.06em; background: var(--cocoa); }
+    .promise .pic img { width: 100%; height: 100%; object-fit: cover; }
+    .promise .by { margin-top: 28px; font-weight: 500; font-size: clamp(17px, 1.5vw, 22px); color: rgba(251, 246, 238, 0.82); }
+    /* the animation (laptops): the section is tall so it can play while the words stay in view */
+    .promise.play { height: 260vh; }
+    .promise.play .promise-stage { position: sticky; top: 0; }
+    .promise.play .kicker { opacity: 0; transform: translateX(-40px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .2, 1); }
+    .promise.play .kicker.on { opacity: 1; transform: none; }
+    .promise.play .w { opacity: 0.12; transition: opacity .45s ease; }
+    .promise.play .w.on { opacity: 1; }
+    .promise.play .pic { width: 0; opacity: 0; transition: width .8s cubic-bezier(.2, .8, .2, 1), opacity .6s ease; }
+    .promise.play .pic.on { width: 1.7em; opacity: 1; }
+    .promise.play .by { opacity: 0; transform: translateY(14px); transition: opacity .8s ease, transform .8s ease; }
+    .promise.play .by.on { opacity: 1; transform: none; }
     @media (max-width: 899px) {
-      .promise { padding: 88px 0; }
-      .promise .d1 { left: 6%; top: 10%; } .promise .d3 { right: 6%; top: 14%; } .promise .d2 { left: 10%; bottom: 8%; } .promise .d4 { right: 12%; bottom: 10%; }
+      .promise-stage { padding: 72px 0; }
+      .promise blockquote { font-size: clamp(26px, 8vw, 34px); line-height: 1.18; }
+      .promise .pic { width: 1.5em; }
     }
-    .promise blockquote { font-size: clamp(36px, 5.6vw, 84px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--cream); margin-top: 20px; }
-    .promise blockquote span { color: var(--sand); }
-    .promise .by { margin-top: 28px; font-weight: 500; font-size: clamp(18px, 1.6vw, 23px); color: rgba(251, 246, 238, 0.82); }
 
     /* How it works: the glossy coils photo behind, cocoa tint, cream words */
     .how { position: relative; color: var(--cream); background: var(--cocoa-deep) url('images/how-woman.webp') 78% center / cover no-repeat; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
@@ -262,8 +271,7 @@
       .hero h1 { font-size: clamp(34px, 10.5vw, 46px); }
       .hero p.lead { font-size: 16px; margin: 18px 0 26px; }
       .split .words p, .full p, .stylists p, .faq-side p, .join-panel p.lead { font-size: 16px; }
-      .promise blockquote { font-size: 34px; }
-      .promise .by { font-size: 17px; margin-top: 20px; }
+      .promise .by { font-size: 16px; margin-top: 20px; }
       .step-card h3 { font-size: 20px; }
       .portrait .label b { font-size: 20px; }
       .btn { height: 50px; font-size: 16px; }
@@ -372,12 +380,14 @@
     </div>
 
     <!-- The promise -->
-    <section class="promise">
-      <div class="wrap reveal">
-        <div class="promise-card">
-        <span class="kicker">Our promise</span>
-        <blockquote>Your hair isn’t a problem to fix. It’s a <span>crown to care for.</span></blockquote>
-        <p class="by">No harsh rules. No guilt. Just gentle care that adds up, one day at a time.</p>
+    <section class="promise" id="promise">
+      <div class="promise-stage">
+        <div class="wrap">
+          <div class="promise-card">
+            <span class="kicker">Our promise</span>
+            <blockquote aria-label="Your hair isn’t a problem to fix. It’s a crown to care for."><span class="w">Your</span> <span class="w">hair</span> <span class="pic"><img src="images/queen-twistout.webp" alt="" loading="lazy" style="object-position: center 30%" /></span> <span class="w">isn’t</span> <span class="w">a</span> <span class="w">problem</span> <span class="w">to</span> <span class="w">fix.</span> <span class="w">It’s</span> <span class="w">a</span> <span class="w"><em>crown</em></span> <span class="pic"><img src="images/man-locs.webp" alt="" loading="lazy" style="object-position: center 25%" /></span> <span class="w"><em>to</em></span> <span class="w"><em>care</em></span> <span class="w"><em>for.</em></span> <span class="pic"><img src="images/kids.webp" alt="" loading="lazy" style="object-position: 40% 30%" /></span></blockquote>
+            <p class="by">No harsh rules. No guilt. Just gentle care that adds up, one day at a time.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -547,6 +557,27 @@
     onScroll();
 
     // Gentle glide-up as things come into view
+    // Our promise: plays with the scroll on laptops
+    (() => {
+      const sec = document.getElementById('promise');
+      if (!sec || window.matchMedia('(max-width: 899px), (prefers-reduced-motion: reduce)').matches) return;
+      sec.classList.add('play');
+      const kicker = sec.querySelector('.kicker');
+      const words = [...sec.querySelectorAll('.w')];
+      const pics = [...sec.querySelectorAll('.pic')];
+      const by = sec.querySelector('.by');
+      const step = () => {
+        const r = sec.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, -r.top / (r.height - window.innerHeight)));
+        kicker.classList.toggle('on', p > 0.01 || r.top < window.innerHeight * 0.4);
+        words.forEach((w, i) => w.classList.toggle('on', p > 0.04 + (i / words.length) * 0.5));
+        pics.forEach((x, i) => x.classList.toggle('on', p > 0.6 + i * 0.06));
+        by.classList.toggle('on', p > 0.82);
+      };
+      window.addEventListener('scroll', step, { passive: true });
+      window.addEventListener('resize', step);
+      step();
+    })();
     const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
