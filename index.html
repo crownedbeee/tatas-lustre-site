@@ -108,8 +108,8 @@
     .hero p.lead { color: rgba(251, 246, 238, 0.72); font-size: 19px; max-width: 460px; margin: 24px 0 32px; }
     .hero-ctas { display: grid; gap: 12px; }
     /* the bottom of the hero (DeBee): a row of faces, then a gentle scroll hint */
-    .crowd { display: flex; align-items: center; gap: 12px; margin-top: 30px; font-size: 14px; font-weight: 600; color: rgba(251, 246, 238, 0.78); }
-    .faces { display: flex; }
+    @media (max-width: 899px) { .hero .kicker { font-size: 11px; letter-spacing: 0.08em; } } /* one line on phones */
+    .faces { display: flex; margin-bottom: 18px; } /* the four faces sit above the yellow line (DeBee) */
     .faces img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cocoa); margin-left: -10px; }
     .faces img:first-child { margin-left: 0; }
     .trust { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 30px; font-size: 14px; color: rgba(251, 246, 238, 0.6); }
@@ -395,7 +395,8 @@
     <!-- Hero: words on cocoa, the photo filling the right half -->
     <section class="hero" aria-label="Tatas Lustre" style="padding: 0">
       <div class="hero-text">
-        <span class="kicker">Natural or relaxed, every crown</span>
+        <span class="faces" aria-hidden="true"><img src="images/queen-twistout.webp" alt="" style="object-position: center 25%" /><img src="images/man-locs.webp" alt="" style="object-position: center 20%" /><img src="images/teen.webp" alt="" style="object-position: center 35%" /><img src="images/kids.webp" alt="" style="object-position: 40% 30%" /></span>
+        <span class="kicker">Made for every crown, natural or relaxed</span>
         <h1>The Nub Of <span>Hair Radiance</span></h1>
         <p class="lead">Your hair has waited long enough for a routine that truly gets it. Tiny daily steps, made for your crown, so the length you grow is the length you keep.</p>
         <div class="hero-ctas">
@@ -403,7 +404,6 @@
           <a class="btn btn-line" href="#how">See how it works</a>
         </div>
         <div class="trust"><span>Free to start</span><span>For women, men, children and stylists</span><span>Your photos stay private</span></div>
-        <div class="crowd"><span class="faces" aria-hidden="true"><img src="images/queen-twistout.webp" alt="" style="object-position: center 25%" /><img src="images/man-locs.webp" alt="" style="object-position: center 20%" /><img src="images/teen.webp" alt="" style="object-position: center 35%" /><img src="images/kids.webp" alt="" style="object-position: 40% 30%" /></span><span>Made for every crown</span></div>
       </div>
       <div class="hero-photo">
         <img src="images/hero-woman.webp" alt="A joyful woman laughing, with a big glossy natural afro" width="1536" height="2048" fetchpriority="high" />
