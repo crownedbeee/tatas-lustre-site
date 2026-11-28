@@ -1,6 +1,6 @@
 # Tatas Lustre
 
-> Tatas Lustre ("The Nub Of Hair Radiance") is a natural hair care app focused on length retention. It builds a gentle daily hair routine for each person's hair type, porosity and goals, and helps them keep the length they grow.
+> Tatas Lustre ("The Nub Of Hair Radiance") is a hair care app for natural and relaxed hair, focused on length retention. It builds a gentle daily hair routine for each person's hair type, porosity and goals, and helps them keep the length they grow.
 
 Website: https://tataslustre.com/
 Instagram: https://www.instagram.com/tatas_lustre
@@ -9,7 +9,8 @@ Status: coming soon on Android (Google Play). Join the waitlist on the website.
 
 ## Who it is for
 - Women, men, teens (13 to 17, with a parent's okay), children (run by a parent) and hairstylists
-- Natural hair: wavy, curly and coily (types 2 to 4, including 4C), and relaxed hair
+- Natural hair: wavy, curly and coily (types 2 to 4, including 4C)
+- Relaxed hair, with its own routine (including a weekly protein and moisture balance)
 
 ## What it does
 - A personal daily hair routine (moisturise, seal, scalp massage, satin at night, wash day) with gentle reminders and streaks
